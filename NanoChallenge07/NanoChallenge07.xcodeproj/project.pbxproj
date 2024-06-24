@@ -18,7 +18,9 @@
 		40CC26992C29F8660018B588 /* SearchPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40CC26982C29F8660018B588 /* SearchPage.swift */; };
 		40CC269B2C29F8900018B588 /* SearchPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40CC269A2C29F8900018B588 /* SearchPageViewModel.swift */; };
 		40CC26A02C29F9260018B588 /* ErrorEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40CC269F2C29F9260018B588 /* ErrorEnum.swift */; };
-		40CC26A22C29F9610018B588 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40CC26A12C29F9610018B588 /* NetworkManager.swift */; };
+		40CC26A22C29F9610018B588 /* NetworkingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40CC26A12C29F9610018B588 /* NetworkingManager.swift */; };
+		E80CA1252C2A01E60072FD4C /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80CA1242C2A01E60072FD4C /* Endpoint.swift */; };
+		E80CA1272C2A0E8B0072FD4C /* NetworkingLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80CA1262C2A0E8B0072FD4C /* NetworkingLogger.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,7 +36,9 @@
 		40CC26982C29F8660018B588 /* SearchPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPage.swift; sourceTree = "<group>"; };
 		40CC269A2C29F8900018B588 /* SearchPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPageViewModel.swift; sourceTree = "<group>"; };
 		40CC269F2C29F9260018B588 /* ErrorEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorEnum.swift; sourceTree = "<group>"; };
-		40CC26A12C29F9610018B588 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		40CC26A12C29F9610018B588 /* NetworkingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingManager.swift; sourceTree = "<group>"; };
+		E80CA1242C2A01E60072FD4C /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
+		E80CA1262C2A0E8B0072FD4C /* NetworkingLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingLogger.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,7 +121,9 @@
 			isa = PBXGroup;
 			children = (
 				40CC269F2C29F9260018B588 /* ErrorEnum.swift */,
-				40CC26A12C29F9610018B588 /* NetworkManager.swift */,
+				E80CA1242C2A01E60072FD4C /* Endpoint.swift */,
+				E80CA1262C2A0E8B0072FD4C /* NetworkingLogger.swift */,
+				40CC26A12C29F9610018B588 /* NetworkingManager.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -204,12 +210,14 @@
 				40CC26952C29F7ED0018B588 /* TabCellView.swift in Sources */,
 				40CC269B2C29F8900018B588 /* SearchPageViewModel.swift in Sources */,
 				40CC26932C29F7BB0018B588 /* DetailPageViewModel.swift in Sources */,
-				40CC26A22C29F9610018B588 /* NetworkManager.swift in Sources */,
+				40CC26A22C29F9610018B588 /* NetworkingManager.swift in Sources */,
 				40CC26752C29EC170018B588 /* NanoChallenge07App.swift in Sources */,
+				E80CA1272C2A0E8B0072FD4C /* NetworkingLogger.swift in Sources */,
 				40CC26A02C29F9260018B588 /* ErrorEnum.swift in Sources */,
 				40CC26912C29F7950018B588 /* DetailPageView.swift in Sources */,
 				40CC26972C29F8350018B588 /* PriceTabCell.swift in Sources */,
 				40CC26992C29F8660018B588 /* SearchPage.swift in Sources */,
+				E80CA1252C2A01E60072FD4C /* Endpoint.swift in Sources */,
 				40CC268E2C29F72B0018B588 /* ItemSearch.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
