@@ -17,7 +17,7 @@ class DetailPageViewModel:ObservableObject {
     
     @Published var dataCenters:[DataCenter] = []
     @Published var worlds:[World] = []
-    var network = NetworkingManager()
+    var network = NetworkingManager.shared
     
     func searchDataCenter() async{
         Task{

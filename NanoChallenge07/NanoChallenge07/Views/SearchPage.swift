@@ -18,26 +18,21 @@ struct SearchPage: View {
                         .textFieldStyle(.roundedBorder)
                     
                     ScrollView{
-                        ForEach(vm.result.Results, id: \.self) { item in
-                            if item.UrlType == "Item"{
-                                NavigationLink {
-                                    DetailPageView(item: item)
-                                } label: {
-                                    TabCellView(item: item)
+                        LazyVStack {
+                            ForEach(vm.result.Results, id: \.self) { item in
+                                if item.UrlType == "Item"{
+                                    NavigationLink {
+                                        DetailPageView(item: item)
+                                    } label: {
+                                        TabCellView(item: item)
+                                    }
+                                    .buttonStyle(PlainButtonStyle())
                                 }
-                                .buttonStyle(PlainButtonStyle())
                             }
                         }
                     }
                 }
                 .padding()
-                .onChange(of: vm.textToSearch) { oldValue, newValue in
-                    if newValue == ""{
-                        vm.result.Results = []
-                    } else {
-                        vm.search()
-                    }
-                }
             }
         }
     }

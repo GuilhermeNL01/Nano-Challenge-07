@@ -16,6 +16,10 @@ protocol NetworkManager {
 
 final class NetworkingManager: NetworkManager {
     
+    public static let shared: NetworkingManager = .init()
+    
+    private init(){}
+    
     func request<T: Codable>(session: URLSession = .shared,
                              _ endpoint: Endpoint,
                              type: T.Type) async throws -> T {
