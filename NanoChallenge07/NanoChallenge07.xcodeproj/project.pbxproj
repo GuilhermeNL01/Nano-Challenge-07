@@ -8,17 +8,33 @@
 
 /* Begin PBXBuildFile section */
 		40CC26752C29EC170018B588 /* NanoChallenge07App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40CC26742C29EC170018B588 /* NanoChallenge07App.swift */; };
-		40CC26772C29EC170018B588 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40CC26762C29EC170018B588 /* ContentView.swift */; };
 		40CC26792C29EC180018B588 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 40CC26782C29EC180018B588 /* Assets.xcassets */; };
 		40CC267C2C29EC180018B588 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 40CC267B2C29EC180018B588 /* Preview Assets.xcassets */; };
+		40CC268E2C29F72B0018B588 /* ItemSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40CC268D2C29F72A0018B588 /* ItemSearch.swift */; };
+		40CC26912C29F7950018B588 /* DetailPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40CC26902C29F7950018B588 /* DetailPageView.swift */; };
+		40CC26932C29F7BB0018B588 /* DetailPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40CC26922C29F7BB0018B588 /* DetailPageViewModel.swift */; };
+		40CC26952C29F7ED0018B588 /* TabCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40CC26942C29F7ED0018B588 /* TabCellView.swift */; };
+		40CC26972C29F8350018B588 /* PriceTabCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40CC26962C29F8350018B588 /* PriceTabCell.swift */; };
+		40CC26992C29F8660018B588 /* SearchPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40CC26982C29F8660018B588 /* SearchPage.swift */; };
+		40CC269B2C29F8900018B588 /* SearchPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40CC269A2C29F8900018B588 /* SearchPageViewModel.swift */; };
+		40CC26A02C29F9260018B588 /* ErrorEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40CC269F2C29F9260018B588 /* ErrorEnum.swift */; };
+		40CC26A22C29F9610018B588 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40CC26A12C29F9610018B588 /* NetworkManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		40CC26712C29EC170018B588 /* NanoChallenge07.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NanoChallenge07.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		40CC26742C29EC170018B588 /* NanoChallenge07App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NanoChallenge07App.swift; sourceTree = "<group>"; };
-		40CC26762C29EC170018B588 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		40CC26782C29EC180018B588 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		40CC267B2C29EC180018B588 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		40CC268D2C29F72A0018B588 /* ItemSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemSearch.swift; sourceTree = "<group>"; };
+		40CC26902C29F7950018B588 /* DetailPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPageView.swift; sourceTree = "<group>"; };
+		40CC26922C29F7BB0018B588 /* DetailPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPageViewModel.swift; sourceTree = "<group>"; };
+		40CC26942C29F7ED0018B588 /* TabCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabCellView.swift; sourceTree = "<group>"; };
+		40CC26962C29F8350018B588 /* PriceTabCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceTabCell.swift; sourceTree = "<group>"; };
+		40CC26982C29F8660018B588 /* SearchPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPage.swift; sourceTree = "<group>"; };
+		40CC269A2C29F8900018B588 /* SearchPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPageViewModel.swift; sourceTree = "<group>"; };
+		40CC269F2C29F9260018B588 /* ErrorEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorEnum.swift; sourceTree = "<group>"; };
+		40CC26A12C29F9610018B588 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,9 +67,11 @@
 		40CC26732C29EC170018B588 /* NanoChallenge07 */ = {
 			isa = PBXGroup;
 			children = (
-				40CC26742C29EC170018B588 /* NanoChallenge07App.swift */,
-				40CC26762C29EC170018B588 /* ContentView.swift */,
-				40CC26782C29EC180018B588 /* Assets.xcassets */,
+				40CC26A32C29F9790018B588 /* App */,
+				40CC269D2C29F8BA0018B588 /* Utils */,
+				40CC268C2C29F7170018B588 /* Model */,
+				40CC268B2C29F70D0018B588 /* ViewModels */,
+				40CC268A2C29F7000018B588 /* Views */,
 				40CC267A2C29EC180018B588 /* Preview Content */,
 			);
 			path = NanoChallenge07;
@@ -65,6 +83,52 @@
 				40CC267B2C29EC180018B588 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		40CC268A2C29F7000018B588 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				40CC26902C29F7950018B588 /* DetailPageView.swift */,
+				40CC26942C29F7ED0018B588 /* TabCellView.swift */,
+				40CC26962C29F8350018B588 /* PriceTabCell.swift */,
+				40CC26982C29F8660018B588 /* SearchPage.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		40CC268B2C29F70D0018B588 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				40CC26922C29F7BB0018B588 /* DetailPageViewModel.swift */,
+				40CC269A2C29F8900018B588 /* SearchPageViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		40CC268C2C29F7170018B588 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				40CC268D2C29F72A0018B588 /* ItemSearch.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		40CC269D2C29F8BA0018B588 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				40CC269F2C29F9260018B588 /* ErrorEnum.swift */,
+				40CC26A12C29F9610018B588 /* NetworkManager.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		40CC26A32C29F9790018B588 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				40CC26742C29EC170018B588 /* NanoChallenge07App.swift */,
+				40CC26782C29EC180018B588 /* Assets.xcassets */,
+			);
+			path = App;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,8 +201,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				40CC26772C29EC170018B588 /* ContentView.swift in Sources */,
+				40CC26952C29F7ED0018B588 /* TabCellView.swift in Sources */,
+				40CC269B2C29F8900018B588 /* SearchPageViewModel.swift in Sources */,
+				40CC26932C29F7BB0018B588 /* DetailPageViewModel.swift in Sources */,
+				40CC26A22C29F9610018B588 /* NetworkManager.swift in Sources */,
 				40CC26752C29EC170018B588 /* NanoChallenge07App.swift in Sources */,
+				40CC26A02C29F9260018B588 /* ErrorEnum.swift in Sources */,
+				40CC26912C29F7950018B588 /* DetailPageView.swift in Sources */,
+				40CC26972C29F8350018B588 /* PriceTabCell.swift in Sources */,
+				40CC26992C29F8660018B588 /* SearchPage.swift in Sources */,
+				40CC268E2C29F72B0018B588 /* ItemSearch.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
