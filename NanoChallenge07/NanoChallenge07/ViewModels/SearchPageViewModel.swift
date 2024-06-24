@@ -11,12 +11,13 @@ import Foundation
 class SearchPageViewModel: ObservableObject {
     @Published var textToSearch = ""
     @Published var result:Result = Result(Results: [])
-    var network = NetworkManager()
+    var network = NetworkingManager()
     
     func search(){
+        guard !textToSearch.isEmpty else { return }
         Task{
             do{
-                result = try await network.fetchItems(item:textToSearch)
+                result = try await network.request(.searchItem(textToSearch), type: Result.self)
             } catch {
                 print(error)
             }

@@ -17,12 +17,12 @@ class DetailPageViewModel:ObservableObject {
     
     @Published var dataCenters:[DataCenter] = []
     @Published var worlds:[World] = []
-    var network = NetworkManager()
+    var network = NetworkingManager()
     
     func searchDataCenter() async{
         Task{
             do{
-                dataCenters = try await network.fetchAvailableDataCenters()
+                dataCenters = try await network.request(Endpoint.datacenters, type: [DataCenter].self)
             }catch{
                 print(error)
             }
@@ -32,7 +32,7 @@ class DetailPageViewModel:ObservableObject {
     func searchWorlds() async{
         Task{
             do{
-                worlds = try await network.fetchAvailableWorlds()
+                worlds = try await network.request(Endpoint.worlds, type: [World].self)
             }catch{
                 print(error)
             }
@@ -42,22 +42,24 @@ class DetailPageViewModel:ObservableObject {
     func searchInfo(info:Int) async{
         Task{
             do{
-                iteminfo = try await network.fetchItemInfo(itemId: info)
+                iteminfo = try await network.request(.itemInfo(info), type: ItemInfo.self)
             }catch{
                 print(error)
             }
         }
     }
     
-    func searchMarketInfo() async{
+    func searchMarketInfo() {
         prices = []
         searchedPrices = []
         Task{
             do{
                 for world in worlds {
                     if selectedDataCenter.worlds.contains(world.id) {
-                        searchedPrices.append(try await network.searchPrices(world: world
-                            .id, itemId: iteminfo.ID))
+                        searchedPrices.append(
+                            try await network.request(Endpoint.itemPriceForWorld(world.id, iteminfo.ID), type: MarketInfo.self)
+                            
+                        )
                     }
                 }
                 searchedPrices.sort(by: {$0.minPrice < $1.minPrice})

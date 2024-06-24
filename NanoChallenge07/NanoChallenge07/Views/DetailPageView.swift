@@ -56,18 +56,14 @@ struct DetailPageView: View {
                     }
                 }
             }
-            .onChange(of: vm.selectedDataCenter, perform: { _ in
-                Task{
-                    await vm.searchMarketInfo()
-                }
-            })
-            .onAppear(perform: {
-                Task{
-                    await vm.searchInfo(info: item.ID)
-                    await vm.searchDataCenter()
-                    await vm.searchWorlds()
-                }
-            })
+            .onChange(of: vm.selectedDataCenter) {
+                vm.searchMarketInfo()
+            }
+            .task {
+                await vm.searchInfo(info: item.ID)
+                await vm.searchDataCenter()
+                await vm.searchWorlds()
+            }
         }
     }
 }
