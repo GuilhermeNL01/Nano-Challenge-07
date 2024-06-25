@@ -74,5 +74,5 @@ struct DetailPageView: View {
 }
 
 #Preview {
-    DetailPageView(vm: DetailPageViewModel(network: NetworkingManager.shared), item: ItemSearch(ID: 40624, Icon: "/i/051000/051510.png", Name: "Imitation Curtained Window", UrlType: "Item"))
+    DetailPageView(vm: DetailPageViewModel(network: NetworkingManager.mock), item: ItemSearch(ID: 40624, Icon: "/i/051000/051510.png", Name: "Imitation Curtained Window", UrlType: "Item"))
 }

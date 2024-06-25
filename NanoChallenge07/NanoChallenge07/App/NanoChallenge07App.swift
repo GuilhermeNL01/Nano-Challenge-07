@@ -11,7 +11,7 @@ import SwiftUI
 struct NanoChallenge07App: App {
     var body: some Scene {
         WindowGroup {
-            SearchPage()
+            SearchPage(vm: SearchPageViewModel(network: NetworkingManager.shared))
         }
     }
 }

@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct SearchPage: View {
-    @ObservedObject var vm = SearchPageViewModel(network: NetworkingManager.shared)
+    @ObservedObject var vm: SearchPageViewModel
     
     var body: some View {
         NavigationStack {
@@ -72,5 +72,5 @@ struct SearchPage: View {
 }
 
 #Preview {
-    SearchPage()
+    SearchPage(vm: SearchPageViewModel(network: NetworkingManager.mock))
 }

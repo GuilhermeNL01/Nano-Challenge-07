@@ -11,7 +11,8 @@ import OSLog
 final class NetworkingManager: NetworkManager {
     
     public static let shared: NetworkingManager = .init()
-    public static let preview: NetworkManager = MockNetworkingManager()
+    
+    public static let mock: NetworkManager = MockNetworkingManager()
     
     private init(){}
     
