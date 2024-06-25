@@ -1,3 +1,10 @@
+//
+//  TabCellView.swift
+//  NanoChallenge07
+//
+//  Created by Guilherme Nunes Lobo on 24/06/24.
+//
+
 import SwiftUI
 
 struct SearchPage: View {
@@ -30,22 +37,31 @@ struct SearchPage: View {
                 }
                 .padding(.top)
                 
-                // Results
                 VStack {
-                    if vm.isSearching {
+                    if vm.textToSearch.isEmpty {
+                        Spacer()
+                        VStack {
+                            Image(systemName: "magnifyingglass")
+                                .font(.system(size: 50))
+                                .foregroundColor(.gray)
+                            Text("Start searching by typing above")
+                                .foregroundColor(.gray)
+                                .padding(.top, 8)
+                        }
+                        Spacer()
+                    } else if vm.isSearching {
                         Spacer()
                         ProgressView("Searching...")
                             .progressViewStyle(CircularProgressViewStyle(tint: .blue))
                             .scaleEffect(1.5)
                         Spacer()
                     } else {
-                        
-                        ScrollView{
+                        ScrollView {
                             LazyVStack {
                                 ForEach(vm.result.Results, id: \.self) { item in
-                                    if item.UrlType == "Item"{
+                                    if item.UrlType == "Item" {
                                         NavigationLink {
-                                            DetailPageView(vm: DetailPageViewModel(network: NetworkingManager.shared),item: item)
+                                            DetailPageView(vm: DetailPageViewModel(network: NetworkingManager.shared), item: item)
                                                 .padding(.vertical, 8)
                                                 .padding(.horizontal)
                                         } label: {
