@@ -8,15 +8,10 @@
 import Foundation
 import OSLog
 
-protocol NetworkManager {
-    func request<T: Codable>(session: URLSession,
-                             _ endpoint: Endpoint,
-                             type: T.Type) async throws -> T
-}
-
 final class NetworkingManager: NetworkManager {
     
     public static let shared: NetworkingManager = .init()
+    public static let preview: NetworkManager = MockNetworkingManager()
     
     private init(){}
     
@@ -46,3 +41,4 @@ final class NetworkingManager: NetworkManager {
         return res
     }
 }
+

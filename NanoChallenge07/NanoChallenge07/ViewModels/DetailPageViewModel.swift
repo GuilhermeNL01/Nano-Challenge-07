@@ -40,7 +40,8 @@ class DetailPageViewModel:ObservableObject {
     
     func searchWorlds() async{
         do{
-            worlds = try await network.request(session: .shared,Endpoint.worlds, type: [World].self)
+            let apiWorlds = try await network.request(session: .shared,Endpoint.worlds, type: [World].self)
+            worlds = apiWorlds
         }catch{
             print(error)
         }
@@ -48,7 +49,8 @@ class DetailPageViewModel:ObservableObject {
     
     func searchInfo(info:Int) async{
         do{
-            iteminfo = try await network.request(session: .shared, .itemInfo(info), type: ItemInfo.self)
+            let info = try await network.request(session: .shared, .itemInfo(info), type: ItemInfo.self)
+            iteminfo = info
         }catch{
             print(error)
         }
