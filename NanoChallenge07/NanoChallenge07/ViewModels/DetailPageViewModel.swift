@@ -9,7 +9,11 @@ import Foundation
 
 @MainActor
 class DetailPageViewModel:ObservableObject {
+    let network: NetworkManager
     
+    init(network: NetworkManager) {
+        self.network = network
+    }
     
     @Published var isLoadingPrices = true
     @Published var prices:[MarketInfo] = []
@@ -18,12 +22,11 @@ class DetailPageViewModel:ObservableObject {
     @Published var isLoadingDatacenters = false
     @Published var dataCenters:[DataCenter] = []
     @Published var worlds:[World] = []
-    var network = NetworkingManager.shared
     
     func searchDataCenter() async{
         isLoadingDatacenters = true
         do{
-            let apiDataCenters = try await network.request(Endpoint.datacenters, type: [DataCenter].self)
+            let apiDataCenters = try await network.request(session: .shared, Endpoint.datacenters, type: [DataCenter].self)
             dataCenters = apiDataCenters
             if let first = dataCenters.first {
                 selectedDataCenter = first
@@ -37,7 +40,8 @@ class DetailPageViewModel:ObservableObject {
     
     func searchWorlds() async{
         do{
-            worlds = try await network.request(Endpoint.worlds, type: [World].self)
+            let apiWorlds = try await network.request(session: .shared,Endpoint.worlds, type: [World].self)
+            worlds = apiWorlds
         }catch{
             print(error)
         }
@@ -45,7 +49,8 @@ class DetailPageViewModel:ObservableObject {
     
     func searchInfo(info:Int) async{
         do{
-            iteminfo = try await network.request(.itemInfo(info), type: ItemInfo.self)
+            let info = try await network.request(session: .shared, .itemInfo(info), type: ItemInfo.self)
+            iteminfo = info
         }catch{
             print(error)
         }
@@ -59,7 +64,7 @@ class DetailPageViewModel:ObservableObject {
             let priceSearchResult = try await withThrowingTaskGroup(of: MarketInfo.self) { group in
                 for world in worldsWithinSelectedDatacenter {
                     group.addTask {
-                        return try await self.network.request(Endpoint.itemPriceForWorld(world.id, self.iteminfo.ID), type: MarketInfo.self)
+                        return try await self.network.request(session: .shared, Endpoint.itemPriceForWorld(world.id, self.iteminfo.ID), type: MarketInfo.self)
                     }
                 }
                 var searchedPrices: [MarketInfo] = []
