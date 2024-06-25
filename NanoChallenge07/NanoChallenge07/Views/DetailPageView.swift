@@ -29,40 +29,44 @@ struct DetailPageView: View {
                     Text("\(vm.iteminfo.Name)")
                         .bold()
                     HStack{
-                        Picker("Please choose a data center", selection: $vm.selectedDataCenter) {
-                            ForEach(vm.dataCenters, id: \.self) { data in
-                                Text(data.name)
+                        if vm.isLoadingDatacenters {
+                            ProgressView()
+                        } else {
+                            Picker("Please choose a data center", selection: $vm.selectedDataCenter) {
+                                ForEach(vm.dataCenters, id: \.self) { data in
+                                    Text(data.name)
+                                }
                             }
                         }
                     }
                     .padding()
                 }.padding(40)
                 ScrollView{
-                    if vm.iteminfo.IsUntradable == 1 {
+                    if vm.isLoadingPrices {
+                        ProgressView()
+                    } else if vm.iteminfo.IsUntradable == 1 {
                         Text("untradable")
-                    } else {
-                        if vm.prices != [] {
-                            ForEach(vm.prices, id: \.self){ data in
-                                NavigationLink {
-                                    
-                                } label: {
-                                    PriceTabCell(worlds: vm.worlds, data: data)
-                                }
-                                .buttonStyle(PlainButtonStyle())
+                    }
+                    else {
+                        ForEach(vm.prices, id: \.self){ data in
+                            NavigationLink {
+                                
+                            } label: {
+                                PriceTabCell(worlds: vm.worlds, data: data)
                             }
-                        } else {
-                            ProgressView()
+                            .buttonStyle(PlainButtonStyle())
                         }
                     }
                 }
             }
-            .onChange(of: vm.selectedDataCenter) {
-                vm.searchMarketInfo()
-            }
+            .onChange(of: vm.selectedDataCenter, { _, newValue in
+                guard !vm.selectedDataCenter.region.isEmpty else { return }
+                Task {
+                    await vm.searchMarketInfo()
+                }
+            })
             .task {
-                await vm.searchInfo(info: item.ID)
-                await vm.searchDataCenter()
-                await vm.searchWorlds()
+                _ = await [vm.searchInfo(info: item.ID), vm.searchWorlds(), vm.searchDataCenter()]
             }
         }
     }

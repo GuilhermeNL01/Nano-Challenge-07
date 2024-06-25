@@ -11,6 +11,7 @@ import Combine
 @MainActor
 class SearchPageViewModel: ObservableObject {
     @Published var textToSearch = ""
+    @Published var isSearching = false
     @Published var result:Result = Result(Results: [])
     let network = NetworkingManager.shared
     
@@ -21,18 +22,23 @@ class SearchPageViewModel: ObservableObject {
             .debounce(for: .milliseconds(500), scheduler: RunLoop.main)
             .removeDuplicates()
             .sink { [weak self] query in
-                self?.performSearch()
+                guard let self, !self.textToSearch.isEmpty else { return }
+                self.performSearch()
             }
             .store(in: &cancellables)
     }
     
     func performSearch(){
         guard !textToSearch.isEmpty else { return }
+        isSearching = true
         Task{
             do{
-                result = try await network.request(.searchItem(textToSearch.lowercased()), type: Result.self)
+                let searchResult = try await network.request(.searchItem(textToSearch.lowercased()), type: Result.self)
+                result = searchResult
+                isSearching = false
             } catch {
                 print(error)
+                isSearching = false
             }
         }
     }

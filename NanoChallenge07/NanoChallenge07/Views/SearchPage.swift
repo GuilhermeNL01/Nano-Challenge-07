@@ -16,23 +16,31 @@ struct SearchPage: View {
                     TextField("Pesquisa", text: $vm.textToSearch)
                         .padding()
                         .textFieldStyle(.roundedBorder)
-                    
-                    ScrollView{
-                        LazyVStack {
-                            ForEach(vm.result.Results, id: \.self) { item in
-                                if item.UrlType == "Item"{
-                                    NavigationLink {
-                                        DetailPageView(item: item)
-                                    } label: {
-                                        TabCellView(item: item)
+                        .disabled(vm.isSearching)
+                    Spacer()
+                    if vm.isSearching {
+                        ProgressView()
+                    } else {
+                        
+                        ScrollView{
+                            LazyVStack {
+                                ForEach(vm.result.Results, id: \.self) { item in
+                                    if item.UrlType == "Item"{
+                                        NavigationLink {
+                                            DetailPageView(item: item)
+                                        } label: {
+                                            TabCellView(item: item)
+                                        }
+                                        .buttonStyle(PlainButtonStyle())
                                     }
-                                    .buttonStyle(PlainButtonStyle())
                                 }
                             }
                         }
+                        .padding()
                     }
+                    Spacer()
                 }
-                .padding()
+                
             }
         }
     }
