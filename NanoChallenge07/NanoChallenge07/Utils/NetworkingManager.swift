@@ -20,7 +20,7 @@ final class NetworkingManager: NetworkManager {
     
     private init(){}
     
-    func request<T: Codable>(session: URLSession = .shared,
+    func request<T: Codable>(session: URLSession,
                              _ endpoint: Endpoint,
                              type: T.Type) async throws -> T {
         

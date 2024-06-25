@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct SearchPage: View {
-    @ObservedObject var vm = SearchPageViewModel()
+    @ObservedObject var vm = SearchPageViewModel(network: NetworkingManager.shared)
     
     var body: some View {
         NavigationStack {
@@ -39,26 +39,23 @@ struct SearchPage: View {
                             .scaleEffect(1.5)
                         Spacer()
                     } else {
-                        if vm.result.Results.isEmpty {
-                            Spacer()
-                            Text("No results found")
-                                .foregroundColor(.gray)
-                                .padding()
-                            Spacer()
-                        } else {
-                            ScrollView {
-                                LazyVStack {
-                                    ForEach(vm.result.Results, id: \.self) { item in
-                                        if item.UrlType == "Item" {
-                                            NavigationLink(destination: DetailPageView(item: item)) {
-                                                TabCellView(item: item)
-                                                    .padding(.vertical, 8)
-                                                    .padding(.horizontal)
-                                            }
-                                            .buttonStyle(PlainButtonStyle())
-                                            .padding(.horizontal)
-                                            .padding(.vertical, 4)
+                        
+                        ScrollView{
+                            LazyVStack {
+                                ForEach(vm.result.Results, id: \.self) { item in
+                                    if item.UrlType == "Item"{
+                                        NavigationLink {
+                                            DetailPageView(vm: DetailPageViewModel(network: NetworkingManager.shared),item: item)
+                                                .padding(.vertical, 8)
+                                                .padding(.horizontal)
+                                        } label: {
+                                            TabCellView(item: item)
+                                                .padding(.vertical, 8)
+                                                .padding(.horizontal)
                                         }
+                                        .buttonStyle(PlainButtonStyle())
+                                        .padding(.horizontal)
+                                        .padding(.vertical, 4)
                                     }
                                 }
                             }

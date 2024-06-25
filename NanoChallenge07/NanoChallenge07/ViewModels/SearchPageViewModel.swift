@@ -10,14 +10,20 @@ import Combine
 
 @MainActor
 class SearchPageViewModel: ObservableObject {
+    let network: NetworkManager
+    
     @Published var textToSearch = ""
     @Published var isSearching = false
     @Published var result:Result = Result(Results: [])
-    let network = NetworkingManager.shared
     
     private var cancellables = Set<AnyCancellable>()
     
-    init() {
+    init(network: NetworkManager) {
+        self.network = network
+        handleSearch()
+    }
+    
+    private func handleSearch() {
         $textToSearch
             .debounce(for: .milliseconds(500), scheduler: RunLoop.main)
             .removeDuplicates()
@@ -33,7 +39,7 @@ class SearchPageViewModel: ObservableObject {
         isSearching = true
         Task{
             do{
-                let searchResult = try await network.request(.searchItem(textToSearch.lowercased()), type: Result.self)
+                let searchResult = try await network.request(session: .shared,.searchItem(textToSearch.lowercased()), type: Result.self)
                 result = searchResult
                 isSearching = false
             } catch {
