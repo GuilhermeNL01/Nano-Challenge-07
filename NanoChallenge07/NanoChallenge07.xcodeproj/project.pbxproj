@@ -18,8 +18,21 @@
 		40CC26992C29F8660018B588 /* SearchPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40CC26982C29F8660018B588 /* SearchPage.swift */; };
 		40CC269B2C29F8900018B588 /* SearchPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40CC269A2C29F8900018B588 /* SearchPageViewModel.swift */; };
 		40CC26A02C29F9260018B588 /* ErrorEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40CC269F2C29F9260018B588 /* ErrorEnum.swift */; };
-		40CC26A22C29F9610018B588 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40CC26A12C29F9610018B588 /* NetworkManager.swift */; };
+		40CC26A22C29F9610018B588 /* NetworkingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40CC26A12C29F9610018B588 /* NetworkingManager.swift */; };
+		E80CA1252C2A01E60072FD4C /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80CA1242C2A01E60072FD4C /* Endpoint.swift */; };
+		E80CA1272C2A0E8B0072FD4C /* NetworkingLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80CA1262C2A0E8B0072FD4C /* NetworkingLogger.swift */; };
+		E80CA12F2C2B28530072FD4C /* EndpointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80CA12E2C2B28530072FD4C /* EndpointTests.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		E80CA1302C2B28530072FD4C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 40CC26692C29EC170018B588 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 40CC26702C29EC170018B588;
+			remoteInfo = NanoChallenge07;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		40CC26712C29EC170018B588 /* NanoChallenge07.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NanoChallenge07.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -34,11 +47,22 @@
 		40CC26982C29F8660018B588 /* SearchPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPage.swift; sourceTree = "<group>"; };
 		40CC269A2C29F8900018B588 /* SearchPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPageViewModel.swift; sourceTree = "<group>"; };
 		40CC269F2C29F9260018B588 /* ErrorEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorEnum.swift; sourceTree = "<group>"; };
-		40CC26A12C29F9610018B588 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		40CC26A12C29F9610018B588 /* NetworkingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingManager.swift; sourceTree = "<group>"; };
+		E80CA1242C2A01E60072FD4C /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
+		E80CA1262C2A0E8B0072FD4C /* NetworkingLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingLogger.swift; sourceTree = "<group>"; };
+		E80CA12C2C2B28530072FD4C /* NanoChallenge07UnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NanoChallenge07UnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E80CA12E2C2B28530072FD4C /* EndpointTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndpointTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		40CC266E2C29EC170018B588 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E80CA1292C2B28530072FD4C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -52,6 +76,7 @@
 			isa = PBXGroup;
 			children = (
 				40CC26732C29EC170018B588 /* NanoChallenge07 */,
+				E80CA12D2C2B28530072FD4C /* NanoChallenge07UnitTests */,
 				40CC26722C29EC170018B588 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -60,6 +85,7 @@
 			isa = PBXGroup;
 			children = (
 				40CC26712C29EC170018B588 /* NanoChallenge07.app */,
+				E80CA12C2C2B28530072FD4C /* NanoChallenge07UnitTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -117,7 +143,9 @@
 			isa = PBXGroup;
 			children = (
 				40CC269F2C29F9260018B588 /* ErrorEnum.swift */,
-				40CC26A12C29F9610018B588 /* NetworkManager.swift */,
+				E80CA1242C2A01E60072FD4C /* Endpoint.swift */,
+				E80CA1262C2A0E8B0072FD4C /* NetworkingLogger.swift */,
+				40CC26A12C29F9610018B588 /* NetworkingManager.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -129,6 +157,14 @@
 				40CC26782C29EC180018B588 /* Assets.xcassets */,
 			);
 			path = App;
+			sourceTree = "<group>";
+		};
+		E80CA12D2C2B28530072FD4C /* NanoChallenge07UnitTests */ = {
+			isa = PBXGroup;
+			children = (
+				E80CA12E2C2B28530072FD4C /* EndpointTests.swift */,
+			);
+			path = NanoChallenge07UnitTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -151,6 +187,24 @@
 			productReference = 40CC26712C29EC170018B588 /* NanoChallenge07.app */;
 			productType = "com.apple.product-type.application";
 		};
+		E80CA12B2C2B28530072FD4C /* NanoChallenge07UnitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E80CA1322C2B28530072FD4C /* Build configuration list for PBXNativeTarget "NanoChallenge07UnitTests" */;
+			buildPhases = (
+				E80CA1282C2B28530072FD4C /* Sources */,
+				E80CA1292C2B28530072FD4C /* Frameworks */,
+				E80CA12A2C2B28530072FD4C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E80CA1312C2B28530072FD4C /* PBXTargetDependency */,
+			);
+			name = NanoChallenge07UnitTests;
+			productName = NanoChallenge07UnitTests;
+			productReference = E80CA12C2C2B28530072FD4C /* NanoChallenge07UnitTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -163,6 +217,10 @@
 				TargetAttributes = {
 					40CC26702C29EC170018B588 = {
 						CreatedOnToolsVersion = 15.4;
+					};
+					E80CA12B2C2B28530072FD4C = {
+						CreatedOnToolsVersion = 15.4;
+						TestTargetID = 40CC26702C29EC170018B588;
 					};
 				};
 			};
@@ -180,6 +238,7 @@
 			projectRoot = "";
 			targets = (
 				40CC26702C29EC170018B588 /* NanoChallenge07 */,
+				E80CA12B2C2B28530072FD4C /* NanoChallenge07UnitTests */,
 			);
 		};
 /* End PBXProject section */
@@ -194,6 +253,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E80CA12A2C2B28530072FD4C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -204,17 +270,35 @@
 				40CC26952C29F7ED0018B588 /* TabCellView.swift in Sources */,
 				40CC269B2C29F8900018B588 /* SearchPageViewModel.swift in Sources */,
 				40CC26932C29F7BB0018B588 /* DetailPageViewModel.swift in Sources */,
-				40CC26A22C29F9610018B588 /* NetworkManager.swift in Sources */,
+				40CC26A22C29F9610018B588 /* NetworkingManager.swift in Sources */,
 				40CC26752C29EC170018B588 /* NanoChallenge07App.swift in Sources */,
+				E80CA1272C2A0E8B0072FD4C /* NetworkingLogger.swift in Sources */,
 				40CC26A02C29F9260018B588 /* ErrorEnum.swift in Sources */,
 				40CC26912C29F7950018B588 /* DetailPageView.swift in Sources */,
 				40CC26972C29F8350018B588 /* PriceTabCell.swift in Sources */,
 				40CC26992C29F8660018B588 /* SearchPage.swift in Sources */,
+				E80CA1252C2A01E60072FD4C /* Endpoint.swift in Sources */,
 				40CC268E2C29F72B0018B588 /* ItemSearch.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E80CA1282C2B28530072FD4C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E80CA12F2C2B28530072FD4C /* EndpointTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E80CA1312C2B28530072FD4C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 40CC26702C29EC170018B588 /* NanoChallenge07 */;
+			targetProxy = E80CA1302C2B28530072FD4C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		40CC267D2C29EC180018B588 /* Debug */ = {
@@ -277,6 +361,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_STRICT_CONCURRENCY = complete;
 			};
 			name = Debug;
 		};
@@ -332,6 +417,7 @@
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_STRICT_CONCURRENCY = complete;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -344,7 +430,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"NanoChallenge07/Preview Content\"";
-				DEVELOPMENT_TEAM = M9H5R689TD;
+				DEVELOPMENT_TEAM = RAG47DD75D;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -373,7 +459,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"NanoChallenge07/Preview Content\"";
-				DEVELOPMENT_TEAM = M9H5R689TD;
+				DEVELOPMENT_TEAM = RAG47DD75D;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -394,6 +480,40 @@
 			};
 			name = Release;
 		};
+		E80CA1332C2B28530072FD4C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = fabiofreitas.NanoChallenge07UnitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NanoChallenge07.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/NanoChallenge07";
+			};
+			name = Debug;
+		};
+		E80CA1342C2B28530072FD4C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = fabiofreitas.NanoChallenge07UnitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NanoChallenge07.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/NanoChallenge07";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -411,6 +531,15 @@
 			buildConfigurations = (
 				40CC26802C29EC180018B588 /* Debug */,
 				40CC26812C29EC180018B588 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E80CA1322C2B28530072FD4C /* Build configuration list for PBXNativeTarget "NanoChallenge07UnitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E80CA1332C2B28530072FD4C /* Debug */,
+				E80CA1342C2B28530072FD4C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

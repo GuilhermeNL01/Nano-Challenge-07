@@ -10,61 +10,69 @@ import Foundation
 @MainActor
 class DetailPageViewModel:ObservableObject {
     
-    var searchedPrices:[MarketInfo] = []
+    
+    @Published var isLoadingPrices = true
     @Published var prices:[MarketInfo] = []
     @Published var iteminfo:ItemInfo = ItemInfo(ID: 0, Name: "", IsUntradable: 0, IconHD: "")
-    @Published var selectedDataCenter:DataCenter = DataCenter(name: "Select Data Center", region: "", worlds: [])
-    
+    @Published var selectedDataCenter:DataCenter = DataCenter(name: "Select Data Center", region: "Elemental", worlds: [])
+    @Published var isLoadingDatacenters = false
     @Published var dataCenters:[DataCenter] = []
     @Published var worlds:[World] = []
-    var network = NetworkManager()
+    var network = NetworkingManager.shared
     
     func searchDataCenter() async{
-        Task{
-            do{
-                dataCenters = try await network.fetchAvailableDataCenters()
-            }catch{
-                print(error)
+        isLoadingDatacenters = true
+        do{
+            let apiDataCenters = try await network.request(Endpoint.datacenters, type: [DataCenter].self)
+            dataCenters = apiDataCenters
+            if let first = dataCenters.first {
+                selectedDataCenter = first
             }
+            isLoadingDatacenters = false
+        }catch{
+            print(error)
+            isLoadingDatacenters = false
         }
     }
     
     func searchWorlds() async{
-        Task{
-            do{
-                worlds = try await network.fetchAvailableWorlds()
-            }catch{
-                print(error)
-            }
+        do{
+            worlds = try await network.request(Endpoint.worlds, type: [World].self)
+        }catch{
+            print(error)
         }
     }
     
     func searchInfo(info:Int) async{
-        Task{
-            do{
-                iteminfo = try await network.fetchItemInfo(itemId: info)
-            }catch{
-                print(error)
-            }
+        do{
+            iteminfo = try await network.request(.itemInfo(info), type: ItemInfo.self)
+        }catch{
+            print(error)
         }
     }
     
-    func searchMarketInfo() async{
+    func searchMarketInfo() async {
+        isLoadingPrices = true
         prices = []
-        searchedPrices = []
-        Task{
-            do{
-                for world in worlds {
-                    if selectedDataCenter.worlds.contains(world.id) {
-                        searchedPrices.append(try await network.searchPrices(world: world
-                            .id, itemId: iteminfo.ID))
+        let worldsWithinSelectedDatacenter = worlds.filter({ selectedDataCenter.worlds.contains($0.id)})
+        do{
+            let priceSearchResult = try await withThrowingTaskGroup(of: MarketInfo.self) { group in
+                for world in worldsWithinSelectedDatacenter {
+                    group.addTask {
+                        return try await self.network.request(Endpoint.itemPriceForWorld(world.id, self.iteminfo.ID), type: MarketInfo.self)
                     }
                 }
-                searchedPrices.sort(by: {$0.minPrice < $1.minPrice})
-                prices = searchedPrices
-            }catch{
-                print(error)
+                var searchedPrices: [MarketInfo] = []
+                for try await result in group {
+                    searchedPrices.append(result)
+                }
+                return searchedPrices
             }
+            prices = priceSearchResult.sorted(by: {$0.minPrice < $1.minPrice})
+            isLoadingPrices = false
+        }catch{
+            print(error)
+            isLoadingPrices = false
         }
     }
 }
