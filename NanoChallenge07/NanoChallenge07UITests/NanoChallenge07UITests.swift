@@ -12,10 +12,13 @@ final class NanoChallenge07UITests: XCTestCase {
     
     @MainActor func testSearch() {
         
+        
+
+        
         let app = XCUIApplication()
         app.launch()
         
-        let pesquisaTextField = app.textFields["Pesquisa"]
+        let pesquisaTextField = app.textFields["Search"]
         //pesquisaTextField.tap()
         //app.images["Search"].tap()
         //app.scrollViews.otherElements.buttons["Dated Copper Scepter"].tap()
@@ -33,7 +36,7 @@ final class NanoChallenge07UITests: XCTestCase {
         let app = XCUIApplication()
         app.launch()
         
-        let pesquisaTextField = app.textFields["Pesquisa"]
+        let pesquisaTextField = app.textFields["Search"]
         let elementsQuery = app.scrollViews.otherElements
         //app.navigationBars["_TtGC7SwiftUI32NavigationStackHosting"].buttons["Search"].tap()
         
@@ -46,6 +49,20 @@ final class NanoChallenge07UITests: XCTestCase {
     
     @MainActor func testServerSelaction() {
         
+        let app = XCUIApplication()
+        app.launch()
+        
+        
+        let pesquisaTextField = app.textFields["Search"]
+        let elementsQuery = app.scrollViews.otherElements
+        
+        pesquisaTextField.tap()
+        pesquisaTextField.typeText("Copper")
+        elementsQuery.buttons["Dated Copper Scepter"].tap()
+        elementsQuery.staticTexts["untradable"].tap()
+        app/*@START_MENU_TOKEN@*/.pickerWheels["Elemental"]/*[[".pickers[\"Please choose a data center\"].pickerWheels[\"Elemental\"]",".pickerWheels[\"Elemental\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.swipeUp()
+        XCTAssertTrue(app/*@START_MENU_TOKEN@*/.pickerWheels["한국"]/*[[".pickers[\"Please choose a data center\"].pickerWheels[\"한국\"]",".pickerWheels[\"한국\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.exists)
+                
         
         
     }
