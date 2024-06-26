@@ -13,8 +13,6 @@ struct DetailPageView: View {
     @ObservedObject var vm: DetailPageViewModel
     var item: ItemSearch
     
-    @State private var scrollOffset: CGFloat = 0
-    
     var body: some View {
         NavigationStack{
             VStack{
@@ -23,7 +21,7 @@ struct DetailPageView: View {
                         image.resizable()
                             .frame(width: 80, height: 80)
                             .scaledToFill()
-                            .cornerRadius(calculateCornerRadius())
+                            .cornerRadius(vm.calculateCornerRadius())
                             .shadow(color: .black, radius: 10)
                     } placeholder: {
                         ProgressView()
@@ -50,10 +48,10 @@ struct DetailPageView: View {
                     GeometryReader { geometry in
                         Color.clear
                             .onAppear {
-                                self.scrollOffset = geometry.frame(in: .global).minY
+                                vm.scrollOffset = geometry.frame(in: .global).minY
                             }
                             .onChange(of: geometry.frame(in: .global).minY) { value in
-                                self.scrollOffset = value
+                                vm.scrollOffset = value
                             }
                     }
                     .frame(height: 0) // Invisible GeometryReader to track offset
@@ -84,21 +82,6 @@ struct DetailPageView: View {
             .task {
                 _ = await [vm.searchInfo(info: item.ID), vm.searchWorlds(), vm.searchDataCenter()]
             }
-        }
-    }
-    
-    private func calculateCornerRadius() -> CGFloat {
-        let height: CGFloat = 80 // Height of the image
-        let maxCornerRadius = height / 2
-        let minCornerRadius: CGFloat = 0
-        let scrollThreshold: CGFloat = 200 // Adjust this value based on when you want the transition to happen
-
-        // Calculate the corner radius based on the scroll position
-        if scrollOffset < scrollThreshold {
-            let percentage = scrollOffset / scrollThreshold
-            return maxCornerRadius - (percentage * maxCornerRadius)
-        } else {
-            return minCornerRadius
         }
     }
 }
