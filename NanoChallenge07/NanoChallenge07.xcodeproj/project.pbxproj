@@ -24,6 +24,7 @@
 		40CC26A22C29F9610018B588 /* NetworkingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40CC26A12C29F9610018B588 /* NetworkingManager.swift */; };
 		9C003E8C2C2B603D00EE8B5E /* NanoChallenge07UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C003E8B2C2B603D00EE8B5E /* NanoChallenge07UITests.swift */; };
 		9C003E8E2C2B603D00EE8B5E /* NanoChallenge07UITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C003E8D2C2B603D00EE8B5E /* NanoChallenge07UITestsLaunchTests.swift */; };
+		E0BA8D592C2CAD7100D222DF /* APIPerfomance.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0BA8D582C2CAD7100D222DF /* APIPerfomance.swift */; };
 		E80CA1252C2A01E60072FD4C /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80CA1242C2A01E60072FD4C /* Endpoint.swift */; };
 		E80CA1272C2A0E8B0072FD4C /* NetworkingLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80CA1262C2A0E8B0072FD4C /* NetworkingLogger.swift */; };
 		E80CA12F2C2B28530072FD4C /* EndpointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80CA12E2C2B28530072FD4C /* EndpointTests.swift */; };
@@ -72,6 +73,7 @@
 		9C003E892C2B603D00EE8B5E /* NanoChallenge07UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NanoChallenge07UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C003E8B2C2B603D00EE8B5E /* NanoChallenge07UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NanoChallenge07UITests.swift; sourceTree = "<group>"; };
 		9C003E8D2C2B603D00EE8B5E /* NanoChallenge07UITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NanoChallenge07UITestsLaunchTests.swift; sourceTree = "<group>"; };
+		E0BA8D582C2CAD7100D222DF /* APIPerfomance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIPerfomance.swift; sourceTree = "<group>"; };
 		E80CA1242C2A01E60072FD4C /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		E80CA1262C2A0E8B0072FD4C /* NetworkingLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingLogger.swift; sourceTree = "<group>"; };
 		E80CA12C2C2B28530072FD4C /* NanoChallenge07UnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NanoChallenge07UnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -230,6 +232,7 @@
 			children = (
 				E80CA12E2C2B28530072FD4C /* EndpointTests.swift */,
 				E80CA1392C2B33000072FD4C /* NetworkingManagerTests.swift */,
+				E0BA8D582C2CAD7100D222DF /* APIPerfomance.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -439,6 +442,7 @@
 				E80CA1372C2B32B80072FD4C /* MockURLSessionProtocol.swift in Sources */,
 				E80CA12F2C2B28530072FD4C /* EndpointTests.swift in Sources */,
 				E8999DF52C2C84FD00E69CC1 /* SearchViewModelTest.swift in Sources */,
+				E0BA8D592C2CAD7100D222DF /* APIPerfomance.swift in Sources */,
 				E80CA13A2C2B33000072FD4C /* NetworkingManagerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
