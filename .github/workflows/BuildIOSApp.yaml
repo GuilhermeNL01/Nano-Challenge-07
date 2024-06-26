@@ -22,7 +22,6 @@ jobs:
       - name: Install xpretty util command
         run: |
           gem install xcpretty
-      - name: Build Project for testing
       - name: Cache derived data
         uses: actions/cache@v3
         with:
