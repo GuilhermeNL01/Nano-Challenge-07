@@ -29,23 +29,23 @@ class SearchPageViewModel: ObservableObject {
             .removeDuplicates()
             .sink { [weak self] query in
                 guard let self, !self.textToSearch.isEmpty else { return }
-                self.performSearch()
+                Task {
+                    await self.performSearch()
+                }
             }
             .store(in: &cancellables)
     }
     
-    func performSearch(){
+    func performSearch() async {
         guard !textToSearch.isEmpty else { return }
         isSearching = true
-        Task{
-            do{
-                let searchResult = try await network.request(session: .shared,.searchItem(textToSearch.lowercased()), type: Result.self)
-                result = searchResult
-                isSearching = false
-            } catch {
-                print(error)
-                isSearching = false
-            }
+        do{
+            let searchResult = try await network.request(session: .shared,.searchItem(textToSearch.lowercased()), type: Result.self)
+            result = searchResult
+            isSearching = false
+        } catch {
+            print(error)
+            isSearching = false
         }
     }
 }

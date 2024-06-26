@@ -31,6 +31,8 @@
 		E80CA13A2C2B33000072FD4C /* NetworkingManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80CA1392C2B33000072FD4C /* NetworkingManagerTests.swift */; };
 		E8999DF02C2B5BAD00E69CC1 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8999DEF2C2B5BAD00E69CC1 /* NetworkManager.swift */; };
 		E8999DF22C2B5BDE00E69CC1 /* MockNetworkingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8999DF12C2B5BDE00E69CC1 /* MockNetworkingManager.swift */; };
+		E8999DF52C2C84FD00E69CC1 /* SearchViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8999DF42C2C84FD00E69CC1 /* SearchViewModelTest.swift */; };
+		E8999DF72C2C87D800E69CC1 /* DetailPageViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8999DF62C2C87D800E69CC1 /* DetailPageViewModelTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +80,8 @@
 		E80CA1392C2B33000072FD4C /* NetworkingManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingManagerTests.swift; sourceTree = "<group>"; };
 		E8999DEF2C2B5BAD00E69CC1 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		E8999DF12C2B5BDE00E69CC1 /* MockNetworkingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNetworkingManager.swift; sourceTree = "<group>"; };
+		E8999DF42C2C84FD00E69CC1 /* SearchViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModelTest.swift; sourceTree = "<group>"; };
+		E8999DF62C2C87D800E69CC1 /* DetailPageViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPageViewModelTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -206,6 +210,7 @@
 		E80CA12D2C2B28530072FD4C /* NanoChallenge07UnitTests */ = {
 			isa = PBXGroup;
 			children = (
+				E8999DF32C2C84EA00E69CC1 /* ViewModels */,
 				E80CA1382C2B32E00072FD4C /* Networking */,
 				E80CA1352C2B32A30072FD4C /* Mocks */,
 			);
@@ -256,6 +261,15 @@
 				E8999DF12C2B5BDE00E69CC1 /* MockNetworkingManager.swift */,
 			);
 			path = Mock;
+			sourceTree = "<group>";
+		};
+		E8999DF32C2C84EA00E69CC1 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				E8999DF42C2C84FD00E69CC1 /* SearchViewModelTest.swift */,
+				E8999DF62C2C87D800E69CC1 /* DetailPageViewModelTest.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -421,8 +435,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8999DF72C2C87D800E69CC1 /* DetailPageViewModelTest.swift in Sources */,
 				E80CA1372C2B32B80072FD4C /* MockURLSessionProtocol.swift in Sources */,
 				E80CA12F2C2B28530072FD4C /* EndpointTests.swift in Sources */,
+				E8999DF52C2C84FD00E69CC1 /* SearchViewModelTest.swift in Sources */,
 				E80CA13A2C2B33000072FD4C /* NetworkingManagerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -503,7 +519,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_STRICT_CONCURRENCY = minimal;
 			};
 			name = Debug;
 		};
@@ -559,7 +575,7 @@
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_STRICT_CONCURRENCY = minimal;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
