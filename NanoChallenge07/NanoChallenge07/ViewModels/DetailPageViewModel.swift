@@ -22,6 +22,7 @@ class DetailPageViewModel:ObservableObject {
     @Published var isLoadingDatacenters = false
     @Published var dataCenters:[DataCenter] = []
     @Published var worlds:[World] = []
+    @Published var scrollOffset: CGFloat = 0
     
     func searchDataCenter() async{
         isLoadingDatacenters = true
@@ -81,4 +82,22 @@ class DetailPageViewModel:ObservableObject {
             isLoadingPrices = false
         }
     }
+    
+    // Function to calculate the corner radius of the item image
+    
+    func calculateCornerRadius() -> CGFloat {
+        let height: CGFloat = 80 // Height of the image
+        let maxCornerRadius = height / 2
+        let minCornerRadius: CGFloat = 0
+        let scrollThreshold: CGFloat = 200 // Adjust this value based on when you want the transition to happen
+
+        // Calculate the corner radius based on the scroll position
+        if scrollOffset < scrollThreshold {
+            let percentage = scrollOffset / scrollThreshold
+            return maxCornerRadius - (percentage * maxCornerRadius)
+        } else {
+            return minCornerRadius
+        }
+    }
 }
+
