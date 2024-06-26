@@ -15,7 +15,7 @@ final class NanoChallenge07UITests: XCTestCase {
         let app = XCUIApplication()
         app.launch()
         
-        let pesquisaTextField = app.textFields["Pesquisa"]
+        let pesquisaTextField = app.textFields["Search"]
         //pesquisaTextField.tap()
         //app.images["Search"].tap()
         //app.scrollViews.otherElements.buttons["Dated Copper Scepter"].tap()
@@ -33,7 +33,7 @@ final class NanoChallenge07UITests: XCTestCase {
         let app = XCUIApplication()
         app.launch()
         
-        let pesquisaTextField = app.textFields["Pesquisa"]
+        let pesquisaTextField = app.textFields["Search"]
         let elementsQuery = app.scrollViews.otherElements
         //app.navigationBars["_TtGC7SwiftUI32NavigationStackHosting"].buttons["Search"].tap()
         
