@@ -24,7 +24,8 @@ struct TabCellView: View {
                     RoundedRectangle(cornerRadius: 8)
                         .fill(Color(.systemGray5))
                         .frame(width: 50, height: 50)
-                    ProgressView()
+                    Image(systemName: "photo")
+                        .foregroundColor(.gray)
                 }
             }
             .animation(.easeInOut(duration: 0.3), value: item.Icon)

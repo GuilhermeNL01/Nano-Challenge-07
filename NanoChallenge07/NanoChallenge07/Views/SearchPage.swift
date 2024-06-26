@@ -14,47 +14,13 @@ struct SearchPage: View {
         NavigationStack {
             VStack {
                 // Search Bar
-                HStack {
-                    TextField("Pesquisa", text: $vm.textToSearch)
-                        .padding(12)
-                        .background(Color(.systemGray6))
-                        .cornerRadius(8)
-                        .overlay(
-                            HStack {
-                                Spacer()
-                                if vm.isSearching {
-                                    ProgressView()
-                                        .padding(.trailing, 8)
-                                } else {
-                                    Image(systemName: "magnifyingglass")
-                                        .foregroundColor(.gray)
-                                        .padding(.trailing, 8)
-                                }
-                            }
-                        )
-                        .disabled(vm.isSearching)
-                        .padding(.horizontal)
-                }
-                .padding(.top)
+                SearchBar(text: $vm.textToSearch, isSearching: vm.isSearching)
                 
                 VStack {
                     if vm.textToSearch.isEmpty {
-                        Spacer()
-                        VStack {
-                            Image(systemName: "magnifyingglass")
-                                .font(.system(size: 50))
-                                .foregroundColor(.gray)
-                            Text("Start searching by typing above")
-                                .foregroundColor(.gray)
-                                .padding(.top, 8)
-                        }
-                        Spacer()
+                        EmptyStateView()
                     } else if vm.isSearching {
-                        Spacer()
-                        ProgressView("Searching...")
-                            .progressViewStyle(CircularProgressViewStyle(tint: .blue))
-                            .scaleEffect(1.5)
-                        Spacer()
+                        LoadingStateView()
                     } else {
                         ScrollView {
                             LazyVStack {
