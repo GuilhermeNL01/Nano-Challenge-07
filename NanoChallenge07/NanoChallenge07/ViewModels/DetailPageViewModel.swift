@@ -15,13 +15,14 @@ class DetailPageViewModel:ObservableObject {
         self.network = network
     }
     
-    @Published var isLoadingPrices = true
+    @Published var isLoadingPrices = false
     @Published var prices:[MarketInfo] = []
-    @Published var iteminfo:ItemInfo = ItemInfo(ID: 0, Name: "", IsUntradable: 0, IconHD: "")
+    @Published var iteminfo: ItemInfo?
     @Published var selectedDataCenter:DataCenter = DataCenter(name: "Select Data Center", region: "Elemental", worlds: [])
     @Published var isLoadingDatacenters = false
     @Published var dataCenters:[DataCenter] = []
     @Published var worlds:[World] = []
+    @Published var scrollOffset: CGFloat = 0
     
     func searchDataCenter() async{
         isLoadingDatacenters = true
@@ -61,10 +62,11 @@ class DetailPageViewModel:ObservableObject {
         prices = []
         let worldsWithinSelectedDatacenter = worlds.filter({ selectedDataCenter.worlds.contains($0.id)})
         do{
+            guard let iteminfo else { return }
             let priceSearchResult = try await withThrowingTaskGroup(of: MarketInfo.self) { group in
                 for world in worldsWithinSelectedDatacenter {
                     group.addTask {
-                        return try await self.network.request(session: .shared, Endpoint.itemPriceForWorld(world.id, self.iteminfo.ID), type: MarketInfo.self)
+                        return try await self.network.request(session: .shared, Endpoint.itemPriceForWorld(world.id, iteminfo.ID), type: MarketInfo.self)
                     }
                 }
                 var searchedPrices: [MarketInfo] = []
@@ -80,4 +82,22 @@ class DetailPageViewModel:ObservableObject {
             isLoadingPrices = false
         }
     }
+    
+    // Function to calculate the corner radius of the item image
+    
+    func calculateCornerRadius() -> CGFloat {
+        let height: CGFloat = 80 // Height of the image
+        let maxCornerRadius = height / 2
+        let minCornerRadius: CGFloat = 0
+        let scrollThreshold: CGFloat = 200 // Adjust this value based on when you want the transition to happen
+
+        // Calculate the corner radius based on the scroll position
+        if scrollOffset < scrollThreshold {
+            let percentage = scrollOffset / scrollThreshold
+            return maxCornerRadius - (percentage * maxCornerRadius)
+        } else {
+            return minCornerRadius
+        }
+    }
 }
+
