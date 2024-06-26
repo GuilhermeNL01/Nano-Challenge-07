@@ -5,12 +5,15 @@
 //  Created by Guilherme Nunes Lobo on 24/06/24.
 //
 
+
+
 import SwiftUI
 
 struct DetailPageView: View {
     @ObservedObject var vm: DetailPageViewModel
-    
     var item: ItemSearch
+    
+    @State private var scrollOffset: CGFloat = 0
     
     var body: some View {
         NavigationStack{
@@ -18,11 +21,10 @@ struct DetailPageView: View {
                 VStack{
                     AsyncImage(url: URL(string:"https://xivapi.com/\(vm.iteminfo?.IconHD ?? "")")){ image in
                         image.resizable()
-                            .frame(width: 80,height: 80)
+                            .frame(width: 80, height: 80)
                             .scaledToFill()
-                            .clipShape(Circle())
+                            .cornerRadius(calculateCornerRadius())
                             .shadow(color: .black, radius: 10)
-                        
                     } placeholder: {
                         ProgressView()
                     }
@@ -39,12 +41,23 @@ struct DetailPageView: View {
                                 ForEach(vm.dataCenters, id: \.self) { data in
                                     Text(data.name)
                                 }
-                            }
+                            }.pickerStyle(.inline)
                         }
+                    }.frame(height: 100)
+                }
+                
+                ScrollView {
+                    GeometryReader { geometry in
+                        Color.clear
+                            .onAppear {
+                                self.scrollOffset = geometry.frame(in: .global).minY
+                            }
+                            .onChange(of: geometry.frame(in: .global).minY) { value in
+                                self.scrollOffset = value
+                            }
                     }
-                    .padding()
-                }.padding(40)
-                ScrollView{
+                    .frame(height: 0) // Invisible GeometryReader to track offset
+
                     if vm.isLoadingPrices {
                         ProgressView()
                     } else if let iteminfo = vm.iteminfo, iteminfo.IsUntradable == 1 {
@@ -62,18 +75,34 @@ struct DetailPageView: View {
                     }
                 }
             }
-            .onChange(of: vm.selectedDataCenter, { _, newValue in
+            .onChange(of: vm.selectedDataCenter) { _, newValue in
                 guard !vm.selectedDataCenter.region.isEmpty else { return }
                 Task {
                     await vm.searchMarketInfo()
                 }
-            })
+            }
             .task {
                 _ = await [vm.searchInfo(info: item.ID), vm.searchWorlds(), vm.searchDataCenter()]
             }
         }
     }
+    
+    private func calculateCornerRadius() -> CGFloat {
+        let height: CGFloat = 80 // Height of the image
+        let maxCornerRadius = height / 2
+        let minCornerRadius: CGFloat = 0
+        let scrollThreshold: CGFloat = 200 // Adjust this value based on when you want the transition to happen
+
+        // Calculate the corner radius based on the scroll position
+        if scrollOffset < scrollThreshold {
+            let percentage = scrollOffset / scrollThreshold
+            return maxCornerRadius - (percentage * maxCornerRadius)
+        } else {
+            return minCornerRadius
+        }
+    }
 }
+
 
 #Preview {
     DetailPageView(vm: DetailPageViewModel(network: NetworkingManager.mock), item: ItemSearch(ID: 40624, Icon: "/i/051000/051510.png", Name: "Imitation Curtained Window", UrlType: "Item"))
