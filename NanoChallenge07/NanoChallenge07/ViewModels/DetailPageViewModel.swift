@@ -15,9 +15,9 @@ class DetailPageViewModel:ObservableObject {
         self.network = network
     }
     
-    @Published var isLoadingPrices = true
+    @Published var isLoadingPrices = false
     @Published var prices:[MarketInfo] = []
-    @Published var iteminfo:ItemInfo = ItemInfo(ID: 0, Name: "", IsUntradable: 0, IconHD: "")
+    @Published var iteminfo: ItemInfo?
     @Published var selectedDataCenter:DataCenter = DataCenter(name: "Select Data Center", region: "Elemental", worlds: [])
     @Published var isLoadingDatacenters = false
     @Published var dataCenters:[DataCenter] = []
@@ -61,10 +61,11 @@ class DetailPageViewModel:ObservableObject {
         prices = []
         let worldsWithinSelectedDatacenter = worlds.filter({ selectedDataCenter.worlds.contains($0.id)})
         do{
+            guard let iteminfo else { return }
             let priceSearchResult = try await withThrowingTaskGroup(of: MarketInfo.self) { group in
                 for world in worldsWithinSelectedDatacenter {
                     group.addTask {
-                        return try await self.network.request(session: .shared, Endpoint.itemPriceForWorld(world.id, self.iteminfo.ID), type: MarketInfo.self)
+                        return try await self.network.request(session: .shared, Endpoint.itemPriceForWorld(world.id, iteminfo.ID), type: MarketInfo.self)
                     }
                 }
                 var searchedPrices: [MarketInfo] = []

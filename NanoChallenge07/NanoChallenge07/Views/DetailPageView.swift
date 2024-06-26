@@ -16,7 +16,7 @@ struct DetailPageView: View {
         NavigationStack{
             VStack{
                 VStack{
-                    AsyncImage(url: URL(string:"https://xivapi.com/\(vm.iteminfo.IconHD)")){ image in
+                    AsyncImage(url: URL(string:"https://xivapi.com/\(vm.iteminfo?.IconHD ?? "")")){ image in
                         image.resizable()
                             .frame(width: 80,height: 80)
                             .scaledToFill()
@@ -27,8 +27,10 @@ struct DetailPageView: View {
                         ProgressView()
                     }
                     .padding()
-                    Text("\(vm.iteminfo.Name)")
-                        .bold()
+                    if let iteminfo = vm.iteminfo {
+                        Text("\(iteminfo.Name)")
+                            .bold()
+                    }
                     HStack{
                         if vm.isLoadingDatacenters {
                             ProgressView()
@@ -45,7 +47,7 @@ struct DetailPageView: View {
                 ScrollView{
                     if vm.isLoadingPrices {
                         ProgressView()
-                    } else if vm.iteminfo.IsUntradable == 1 {
+                    } else if let iteminfo = vm.iteminfo, iteminfo.IsUntradable == 1 {
                         Text("untradable")
                     }
                     else {
