@@ -27,19 +27,26 @@ struct DetailPageView: View {
                         ProgressView()
                     }
                     .padding()
+                    
                     if let iteminfo = vm.iteminfo {
                         Text("\(iteminfo.Name)")
                             .bold()
                     }
+                    
                     HStack{
+                        
                         if vm.isLoadingDatacenters {
                             ProgressView()
                         } else {
-                            Picker("Please choose a data center", selection: $vm.selectedDataCenter) {
-                                ForEach(vm.dataCenters, id: \.self) { data in
-                                    Text(data.name)
-                                }
-                            }.pickerStyle(.inline)
+                            
+                            VStack {
+                                Text("Pick your data center")
+                                Picker("Please choose a data center", selection: $vm.selectedDataCenter) {
+                                    ForEach(vm.dataCenters, id: \.self) { data in
+                                        Text(data.name)
+                                    }
+                                }.pickerStyle(.inline)
+                            }.padding()
                         }
                     }.frame(height: 100)
                 }
@@ -55,7 +62,7 @@ struct DetailPageView: View {
                             }
                     }
                     .frame(height: 0) // Invisible GeometryReader to track offset
-
+                    
                     if vm.isLoadingPrices {
                         ProgressView()
                     } else if let iteminfo = vm.iteminfo, iteminfo.IsUntradable == 1 {

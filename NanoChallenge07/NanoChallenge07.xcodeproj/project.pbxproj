@@ -24,6 +24,8 @@
 		40CC26A22C29F9610018B588 /* NetworkingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40CC26A12C29F9610018B588 /* NetworkingManager.swift */; };
 		9C003E8C2C2B603D00EE8B5E /* NanoChallenge07UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C003E8B2C2B603D00EE8B5E /* NanoChallenge07UITests.swift */; };
 		9C003E8E2C2B603D00EE8B5E /* NanoChallenge07UITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C003E8D2C2B603D00EE8B5E /* NanoChallenge07UITestsLaunchTests.swift */; };
+		E05641D02C79117A009EC4B0 /* ServerDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05641CF2C79117A009EC4B0 /* ServerDetailView.swift */; };
+		E05641D22C791FC7009EC4B0 /* ServerBoardInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05641D12C791FC7009EC4B0 /* ServerBoardInfo.swift */; };
 		E0BA8D592C2CAD7100D222DF /* APIPerfomance.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0BA8D582C2CAD7100D222DF /* APIPerfomance.swift */; };
 		E80CA1252C2A01E60072FD4C /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80CA1242C2A01E60072FD4C /* Endpoint.swift */; };
 		E80CA1272C2A0E8B0072FD4C /* NetworkingLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80CA1262C2A0E8B0072FD4C /* NetworkingLogger.swift */; };
@@ -73,6 +75,8 @@
 		9C003E892C2B603D00EE8B5E /* NanoChallenge07UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NanoChallenge07UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C003E8B2C2B603D00EE8B5E /* NanoChallenge07UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NanoChallenge07UITests.swift; sourceTree = "<group>"; };
 		9C003E8D2C2B603D00EE8B5E /* NanoChallenge07UITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NanoChallenge07UITestsLaunchTests.swift; sourceTree = "<group>"; };
+		E05641CF2C79117A009EC4B0 /* ServerDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerDetailView.swift; sourceTree = "<group>"; };
+		E05641D12C791FC7009EC4B0 /* ServerBoardInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerBoardInfo.swift; sourceTree = "<group>"; };
 		E0BA8D582C2CAD7100D222DF /* APIPerfomance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIPerfomance.swift; sourceTree = "<group>"; };
 		E80CA1242C2A01E60072FD4C /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		E80CA1262C2A0E8B0072FD4C /* NetworkingLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingLogger.swift; sourceTree = "<group>"; };
@@ -138,6 +142,7 @@
 				40CC269D2C29F8BA0018B588 /* Utils */,
 				40CC268C2C29F7170018B588 /* Model */,
 				40CC268B2C29F70D0018B588 /* ViewModels */,
+				E05641CE2C791134009EC4B0 /* Components */,
 				40CC268A2C29F7000018B588 /* Views */,
 				40CC267A2C29EC180018B588 /* Preview Content */,
 			);
@@ -155,13 +160,10 @@
 		40CC268A2C29F7000018B588 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				E05641CF2C79117A009EC4B0 /* ServerDetailView.swift */,
 				40CC26902C29F7950018B588 /* DetailPageView.swift */,
 				40CC26942C29F7ED0018B588 /* TabCellView.swift */,
-				40CC26962C29F8350018B588 /* PriceTabCell.swift */,
 				40CC26982C29F8660018B588 /* SearchPage.swift */,
-				409DA93F2C2C890600D432AD /* SearchBar.swift */,
-				409DA9412C2C89FD00D432AD /* EmptyStateView.swift */,
-				409DA9432C2C8A1000D432AD /* LoadingStateView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -179,6 +181,7 @@
 			isa = PBXGroup;
 			children = (
 				40CC268D2C29F72A0018B588 /* ItemSearch.swift */,
+				E05641D12C791FC7009EC4B0 /* ServerBoardInfo.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -207,6 +210,17 @@
 				9C003E8D2C2B603D00EE8B5E /* NanoChallenge07UITestsLaunchTests.swift */,
 			);
 			path = NanoChallenge07UITests;
+			sourceTree = "<group>";
+		};
+		E05641CE2C791134009EC4B0 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				409DA93F2C2C890600D432AD /* SearchBar.swift */,
+				40CC26962C29F8350018B588 /* PriceTabCell.swift */,
+				409DA9412C2C89FD00D432AD /* EmptyStateView.swift */,
+				409DA9432C2C8A1000D432AD /* LoadingStateView.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 		E80CA12D2C2B28530072FD4C /* NanoChallenge07UnitTests */ = {
@@ -421,7 +435,9 @@
 				40CC26972C29F8350018B588 /* PriceTabCell.swift in Sources */,
 				40CC26992C29F8660018B588 /* SearchPage.swift in Sources */,
 				E80CA1252C2A01E60072FD4C /* Endpoint.swift in Sources */,
+				E05641D02C79117A009EC4B0 /* ServerDetailView.swift in Sources */,
 				40CC268E2C29F72B0018B588 /* ItemSearch.swift in Sources */,
+				E05641D22C791FC7009EC4B0 /* ServerBoardInfo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
