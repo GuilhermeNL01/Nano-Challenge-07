@@ -19,7 +19,7 @@ final class MockNetworkingManager: NetworkManager {
         case .worlds:
             return [World(id: 123, name: "world"), World(id: 456, name: "world2"), World(id: 789, name: "world3")] as! T
         case .itemPriceForWorld(let worldId, _):
-            return MarketInfo(worldID: worldId, minPrice: Int.random(in: 1...10000)) as! T
+            return MarketInfo(worldID: worldId, minPrice: Int.random(in: 1...10000),listings: nil) as! T
         }
     }
 }

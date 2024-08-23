@@ -12,26 +12,6 @@ struct Materia: Codable {
     let materiaID: Int
 }
 
-struct Listing: Codable {
-    let lastReviewTime: TimeInterval
-    let pricePerUnit: Int
-    let quantity: Int
-    let stainID: Int
-    let creatorName: String
-    let creatorID: String?
-    let hq: Bool
-    let isCrafted: Bool
-    let listingID: String
-    let materia: [Materia]
-    let onMannequin: Bool
-    let retainerCity: Int
-    let retainerID: String
-    let retainerName: String
-    let sellerID: String?
-    let total: Int
-    let tax: Int
-}
-
 struct RecentHistory: Codable {
     let hq: Bool
     let pricePerUnit: Int

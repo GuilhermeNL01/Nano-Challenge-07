@@ -31,6 +31,7 @@ struct DetailPageView: View {
                     if let iteminfo = vm.iteminfo {
                         Text("\(iteminfo.Name)")
                             .bold()
+                            .padding()
                     }
                     
                     HStack{
@@ -48,7 +49,7 @@ struct DetailPageView: View {
                                 }.pickerStyle(.inline)
                             }.padding()
                         }
-                    }.frame(height: 100)
+                    }.frame(height: 150)
                 }
                 
                 ScrollView {
@@ -70,12 +71,12 @@ struct DetailPageView: View {
                     }
                     else {
                         ForEach(vm.prices, id: \.self){ data in
-                            NavigationLink {
-                                
-                            } label: {
-                                PriceTabCell(worlds: vm.worlds, data: data)
-                            }
-                            .buttonStyle(PlainButtonStyle())
+                            PriceTabCell(worlds: vm.worlds, data: data)
+                                .buttonStyle(PlainButtonStyle())
+                                .onTapGesture {
+                                    vm.showServerInfo.toggle()
+                                    vm.infoToPass = data
+                                }
                         }
                     }
                 }
@@ -88,6 +89,9 @@ struct DetailPageView: View {
             }
             .task {
                 _ = await [vm.searchInfo(info: item.ID), vm.searchWorlds(), vm.searchDataCenter()]
+            }
+            .sheet(isPresented: $vm.showServerInfo) {
+                ServerDetailView(infoToShow: vm.infoToPass)
             }
         }
     }

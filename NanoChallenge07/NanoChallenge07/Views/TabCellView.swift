@@ -30,17 +30,18 @@ struct TabCellView: View {
             }
             .animation(.easeInOut(duration: 0.3), value: item.Icon)
             
+            Spacer()
+            
             VStack(alignment: .leading, spacing: 5) {
                 Text(item.Name)
                     .font(.headline)
                     .bold()
                     .foregroundColor(.primary)
-                    .lineLimit(1)
+                    .lineLimit(2)
                     .minimumScaleFactor(0.8)
 
             }
             
-            Spacer()
         }
         .padding()
         .background(

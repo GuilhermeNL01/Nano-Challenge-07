@@ -15,6 +15,7 @@ class DetailPageViewModel:ObservableObject {
         self.network = network
     }
     
+    @Published var showServerInfo = false
     @Published var isLoadingPrices = false
     @Published var prices:[MarketInfo] = []
     @Published var iteminfo: ItemInfo?
@@ -23,6 +24,8 @@ class DetailPageViewModel:ObservableObject {
     @Published var dataCenters:[DataCenter] = []
     @Published var worlds:[World] = []
     @Published var scrollOffset: CGFloat = 0
+    
+    var infoToPass: MarketInfo = MarketInfo(worldID: 78, minPrice: 0, listings: [])
     
     func searchDataCenter() async{
         isLoadingDatacenters = true

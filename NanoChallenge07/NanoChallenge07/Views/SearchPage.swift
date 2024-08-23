@@ -33,11 +33,11 @@ struct SearchPage: View {
                                         } label: {
                                             TabCellView(item: item)
                                                 .padding(.vertical, 8)
-                                                .padding(.horizontal)
+//                                                .padding(.horizontal)
                                         }
                                         .buttonStyle(PlainButtonStyle())
-                                        .padding(.horizontal)
-                                        .padding(.vertical, 4)
+//                                        .padding(.horizontal)
+//                                        .padding(.vertical, 4)
                                     }
                                 }
                             }
